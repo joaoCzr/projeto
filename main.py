@@ -1,44 +1,39 @@
-#Criamos no decorador app_joao com página dinâmica
 from flask import Flask, render_template
+from flask import request  
 
-app_joao = Flask(__name__)
- 
+app_joao = Flask(__name__, template_folder='t_templates') 
 
-@app_joao.route("/")  
-def homepage():     
-    return render_template ("homepage.html")
-
-@app_joao.route("/index")
+@app_joao.route("/") 
+@app_joao.route("/index")  
 def indice():
-    return render_template ("index.html") 
+    return render_template ("t_index.html")                                               #optei por prefixar com t_ os nomes dos arquivos que usam template
 
 @app_joao.route("/contato")
 def contato():
-    return render_template("contato.html") 
-
-@app_joao.route("/usuario")
-def dados_usuario():
-
-    dados_usu = {"nome": "João","profissao": "Estudante", "disciplina":"Desenvolvimento Web III"}
-    return render_template("usuario.html",  dados = dados_usu)
-                                          
+    return render_template("t_contato.html") 
 
 
+@app_joao.route("/usuarios/<nome_usuario>;<nome_profissao>")
+
+@app_joao.route("/usuarios", defaults={"nome_usuario":"usuário?","nome_profissao":""})  
+def usuarios (nome_usuario, nome_profissao):
+    dados_usu = {"profissao": nome_profissao, "disciplina":"Desenvolvimento Web III"}
+    return render_template ("t_usuario.html", nome=nome_usuario, dados = dados_usu)  
 
 
-@app_joao.route('/usuario/<id>')
-def saudacao(id):
+@app_joao.route("/login")
+def login():
+    return render_template("t_login.html") 
+
+
+@app_joao.route("/autenticar", methods=['POST'] ) 
+def autenticar():
+
     
-    return render_template('homepage_nome.html', nome=id)
-
-@app_joao.route("/usuario/<nome_usuario>;<nome_profissao>;<nome_disciplina>") 
-
-def usuario (nome_usuario, nome_profissao, nome_disciplina): 
-    
-    dados_usu = {"profissao": nome_profissao, "disciplina": nome_disciplina}
-
-    return render_template ("usuario.html", nome=nome_usuario, dados = dados_usu)  
-
+    usuario = request.form.get('nome_usuario')
+    senha = request.form.get('senha')
+    return f"usuario: {usuario} e senha: {senha}"
 
 if __name__ == "__main__": 
      app_joao.run(port = 8000) 
+     

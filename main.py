@@ -1,14 +1,22 @@
+
 from flask import Flask  
 
-app_Joao = Flask(__name__)
-@app_Joao.route('/Ola')  
+app_joao = Flask (__name__) 
 
-def raiz():
-    return 'Olá, turma!'
+@app_joao.route('/')    #rota para solicitação web
+@app_joao.route('/rota1') #rota para solicitação web
+def rota1():  # função a ser executa quando chamar rotas acima ('/') e ('/rota1')
+    return 'teste da rota 1'
 
-def saudacoes(nome):
-    return f'Olá, {nome}!'
+@app_joao.route('/rota2')
+def rota2():
+    resposta = "<H3> teste da rota 2 <H3>"
+    return resposta
 
-if __name__ == "__main__":  
-   
-    app_Joao.run()  
+#função que não pertence a nenhuma rota. 
+def saudacoes (nome): 
+    return f'Olá, {nome}'
+
+if __name__ == "__main__" :
+    app_joao.run(port = 8000)  #executa aplicação
+

@@ -1,10 +1,15 @@
-from flask import Flask
-
-joao_app = Flask(__name__)
-
-@joao_app.route("/")
-def home():
-    return "Olá, este é o primeiro teste da framework!!"
 
 
-joao_app.run()
+from flask import Flask 
+
+app_joao = Flask(__name__)  
+
+
+@app_joao.route('/Ola')  
+
+
+def raiz():
+    return 'Olá, professora!'
+
+if __name__ == "__main__": 
+    app_joao.run()  

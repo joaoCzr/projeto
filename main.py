@@ -1,15 +1,14 @@
+from flask import Flask  
 
-
-from flask import Flask 
-
-app_joao = Flask(__name__)  
-
-
-@app_joao.route('/Ola')  
-
+app_Joao = Flask(__name__)
+@app_Joao.route('/Ola')  
 
 def raiz():
-    return 'Olá, professora!'
+    return 'Olá, turma!'
 
-if __name__ == "__main__": 
-    app_joao.run()  
+def saudacoes(nome):
+    return f'Olá, {nome}!'
+
+if __name__ == "__main__":  
+   
+    app_Joao.run()  

@@ -1,18 +1,25 @@
-# app.py
-from flask import Flask, render_template, request, redirect, url_for, flash, session
-from models import db, User
+import os
 import re
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 from werkzeug.security import generate_password_hash
+from models import db, User
+
+# Caminho absoluto da pasta atual
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'troque-esta-chave-por-uma-segura'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///instance/app.db'
+
+# Caminho absoluto para o banco de dados
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'instance', 'app.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
 
+# Criar banco de dados se não existir
 with app.app_context():
     db.create_all()
+    print("✅ Banco de dados criado com sucesso!")
 
 # Regex de requisitos: min 6 chars, 1 upper, 1 digit, 1 special char
 PASSWORD_REGEX = re.compile(

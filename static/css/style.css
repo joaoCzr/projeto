@@ -1,0 +1,30 @@
+/* static/css/style.css */
+* { box-sizing: border-box; font-family: Arial, sans-serif; }
+body { margin: 0; background: #f4f6f8; color: #222; }
+.container { width: 90%; max-width: 900px; margin: 20px auto; }
+
+.site-header { background: #0b5d7a; color: white; padding: 12px 0; }
+.site-header .container { display:flex; align-items:center; justify-content:space-between; }
+.logo a { color: white; text-decoration: none; font-size: 1.3rem; }
+.main-nav a { color: white; margin-left: 16px; text-decoration: none; }
+
+.card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 6px 18px rgba(0,0,0,0.06); margin-top: 20px; }
+label { display:block; margin-top:10px; font-weight:600; }
+input[type="text"], input[type="email"], input[type="password"] { width:100%; padding:8px; margin-top:6px; border:1px solid #ccd; border-radius:4px; }
+
+button { margin-top:14px; padding:10px 16px; border:none; border-radius:6px; background:#0b7b9a; color:white; cursor:pointer; }
+button:hover { opacity:0.95; }
+
+/* password reqs */
+.pw-req { margin-top:12px; background:#f0f0f0; padding:10px; border-radius:6px; }
+.pw-req ul { margin:0; padding-left:16px; }
+.pw-req li.valid { color: green; text-decoration: line-through; }
+.pw-req li.invalid { color: #888; }
+
+/* flash messages */
+.flash-messages { margin-bottom: 12px; }
+.flash { padding:8px 12px; border-radius:6px; }
+.flash.success { background: #dff0d8; color: #265a2b; }
+.flash.danger { background: #f8d7da; color: #842029; }
+
+.site-footer { text-align:center; padding:12px 0; margin-top:30px; background:#fff; border-top:1px solid #eee; }
